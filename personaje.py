@@ -22,6 +22,7 @@ class Personaje(ABC):
         elif clase == "Paladin":
             self._fuerza = 15
             self._magia = 15
+
     
     @abstractmethod
     def ver_vida(self):
@@ -39,9 +40,16 @@ class Jugador(Personaje):
     def __init__(self, nombre, clase) -> None:
         super().__init__(nombre, clase)
 
-        self._inventario = [["PocionVida", 1], 
+        self._inventario = [["PocionVida", 3], 
                             ["PocionAguante", 1]]
-        
+
+    def __limpiar_inventario(self):
+        auxlist = []
+        for i in range(len(self._inventario)):
+            if self._inventario[i][1] > 0:
+                auxlist.append(self._inventario[i])
+        self._inventario = auxlist
+
     def ver_jugador(self):
         print(f"Nombre: {self._nombre}")
         print(f"Clase: {self._clase}")
@@ -58,7 +66,7 @@ class Jugador(Personaje):
     
     def ver_inventario(self):
         for i in range(len(self._inventario)):
-            print(self._inventario[i][0])
+            print(self._inventario[i][0], "x", self._inventario[i][1])
     
     def usar_objeto(self, obj):
         for i in range(len(self._inventario)):
@@ -67,7 +75,10 @@ class Jugador(Personaje):
                 self._aguante += basicos[obj][1]
                 self._fuerza += basicos[obj][2]
                 self._magia += basicos[obj][3]
-        
+                if self._inventario[i][1] > 0:
+                    self._inventario[i][1] -= 1
+        self.__limpiar_inventario()
+                
 
         
 
