@@ -1,8 +1,8 @@
 from personaje import Personaje, Jugador, Enemigo
+from menus import opciones, menu_inventario
+from tools import combate
 
-j1 = Jugador("Roldy", "Paladin")
-enemy = Enemigo("Eva", "Humano")
+jugardor = Jugador("Roldy", "Paladin")
+enemigo = Enemigo("Eva", "Humano")
 
-
-
-
+combate(jugardor, enemigo)

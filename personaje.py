@@ -61,7 +61,10 @@ class Jugador(Personaje):
         return self._escudo
     
     def get_vida(self):
-        return True if self._vida > 0 else False
+        return self._vida
+    
+    def get_inventario(self):
+        return self._inventario
 
 
     def ver_jugador(self):
@@ -112,12 +115,15 @@ class Jugador(Personaje):
             rotura = otro - self._escudo
             self._escudo = 0
             self._vida -= rotura
+    
+    def atacar(self):
+        return self._fuerza
 
 class Enemigo(Personaje):
     def __init__(self, nombre, clase) -> None:
         super().__init__(nombre, clase)
 
-        self.ver_inventario = []
+        self._inventario = []
 
     def __limpiar_inventario(self):
         auxlist = []
@@ -136,7 +142,7 @@ class Enemigo(Personaje):
         return self._escudo
     
     def get_vida(self):
-        return True if self._vida > 0 else False
+        return self._vida
 
 
     def ver_jugador(self):
@@ -174,5 +180,15 @@ class Enemigo(Personaje):
                 self._inventario[i][1] -= 1      
         self.__limpiar_inventario()          
 
+    def recibir_daño(self, otro):
+        if self._escudo >= otro:
+            self._escudo -= otro
+        else:
+            rotura = otro - self._escudo
+            self._escudo = 0
+            self._vida -= rotura
+    
+    def atacar(self):
+        return self._fuerza
         
 
