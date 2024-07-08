@@ -1,3 +1,11 @@
+def creacion_personaje():
+    nombre = input("¿Cómo se llama tu personaje?: ")
+    print(f"Mmmm... {nombre}. Me gusta.")
+    clase = input(f"Muy bien {nombre}, y tu eres Humano, Guerrero, Mago o Paladin: " )
+    print(f"¡Vaya!, si, ese es un nombre perfecto para un {clase}")
+    print(f"Tu {clase} {nombre} ha sido creado. ¡Que tengas suerte en tu aventura!")
+    return nombre, clase
+
 def opciones(lista_opciones):
     print("Elige una opción:")
     print("-----------------")

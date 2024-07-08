@@ -1,6 +1,7 @@
 import random
 from menus import opciones, menu_inventario
 from personaje import Jugador, Enemigo
+from objetos import loot
 
 def nombre_aleatorio(lon):
     vocales = "aeiou"
@@ -37,3 +38,9 @@ def combate(j1, enemy):
         print(enemy._nombre, "tiene", enemy._vida, "de vida.")
         if j1.get_vida() <= 0:
             print("Jugador Pierde")
+
+def cofre():
+    obj = random.choice(loot)
+    print("Dentro del cofre hay", obj)
+    return obj
+    

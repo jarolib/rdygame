@@ -40,8 +40,8 @@ class Jugador(Personaje):
     def __init__(self, nombre, clase) -> None:
         super().__init__(nombre, clase)
 
-        self._inventario = [["PocionVida", 3], 
-                            ["PocionAguante", 1],
+        self._inventario = [["Poción Vida", 3], 
+                            ["Poción Aguante", 1],
                             ["Rodela", 1]]
 
     def __limpiar_inventario(self):
@@ -101,6 +101,13 @@ class Jugador(Personaje):
                     
                 self._inventario[i][1] -= 1       
         self.__limpiar_inventario()
+    
+    def actualizar_inventario(self, objeto):
+        self.__limpiar_inventario()
+        if objeto[0] == objeto:
+            objeto[1] += 1
+        else:
+            self._inventario.append([objeto, 1])
     
     def uir(self):
         if self._aguante > 24:
